@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.ActivityLogin">
+    tools:context=".Activity.ActivityRegister">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,76 +17,99 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
+
             app:srcCompat="@drawable/intro_pic"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:background="#CB1C1C28"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/xanh5"
-            android:ems="10"
-            app:startIconDrawable="@drawable/ic_email"
-            android:hint="Enter email"
-            android:inputType="textPersonName"
-            android:paddingHorizontal="50dp"
-            android:paddingVertical="10dp"
-            android:textColorHint="@color/xanh5"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.346" />
-
-        <EditText
             android:id="@+id/editTextTextPersonName2"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_email"
+            android:layout_marginTop="32dp"
             android:ems="10"
-            android:textColor="@color/xanh5"
-            android:hint="PassWord"
+            android:hint="Enter PassWord again"
             android:inputType="textPersonName"
             android:paddingHorizontal="50dp"
             android:paddingVertical="10dp"
+            android:textColor="@color/xanh5"
+
             android:textColorHint="@color/xanh5"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+            app:startIconDrawable="@drawable/ic_email" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Enter email "
+            android:inputType="textPersonName"
+            android:paddingHorizontal="50dp"
+            android:paddingVertical="10dp"
+            android:textColor="@color/xanh5"
+            android:textColorHint="@color/xanh5"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Enter PassWord "
+            android:inputType="textPersonName"
+            android:paddingHorizontal="50dp"
+            android:paddingVertical="10dp"
+            android:textColor="@color/xanh5"
+            android:textColorHint="@color/xanh5"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            app:startIconDrawable="@drawable/ic_email" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/textview5"
             android:layout_width="0dp"
             android:layout_height="49dp"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/btn"
             android:backgroundTint="@null"
             android:textColor="@color/white"
-            android:textSize="20dp"
 
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign in"
+                android:text="Sign up"
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -96,27 +119,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginBottom="20dp"
-            android:text="Bạn chưa có tài khoản?"
-            android:textColor="#6D6D80"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
-       <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="Đăng ký ngay"
-            android:textColor="#FF3364"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
