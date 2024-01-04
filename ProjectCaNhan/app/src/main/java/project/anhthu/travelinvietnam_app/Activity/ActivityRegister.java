@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,12 +14,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 import project.anhthu.travelinvietnam_app.R;
 
 public class ActivityRegister extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText username, password, confirmPassword;
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private TextView tvDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,7 @@ public class ActivityRegister extends AppCompatActivity {
         username = findViewById(R.id.editTextTextPersonName);
         password = findViewById(R.id.editTextTextPersonName3);
         confirmPassword = findViewById(R.id.editTextTextPersonName2);
+        tvDateTime = findViewById(R.id.DateTime);
         ConstraintLayout signUpButton = findViewById(R.id.textview5);
         TextView loginTextView = findViewById(R.id.textView3);
 
@@ -39,10 +48,39 @@ public class ActivityRegister extends AppCompatActivity {
             startActivity(loginIntent);
             finish(); // Đóng màn hình đăng ký
         });
+        // DATE Time
+
+        updateDateTime();
 
         signUpButton.setOnClickListener(view -> performRegistration());
     }
 
+    private void updateDateTime() {
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+                String dateTime = dateFormat.format(calendar.getTime());
+                tvDateTime.setText(dateTime);
+
+                // Chạy lại sau mỗi giây
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        // Bắt đầu cập nhật
+        handler.post(runnable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Dừng cập nhật khi Activity không còn hoạt động
+        handler.removeCallbacks(runnable);
+    }
+
+    //Register
     private void performRegistration() {
         String email = username.getText().toString().trim();
         String password = this.password.getText().toString().trim();

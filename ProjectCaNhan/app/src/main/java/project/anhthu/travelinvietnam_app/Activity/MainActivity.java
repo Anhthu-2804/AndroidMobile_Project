@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,7 +31,7 @@ import project.anhthu.travelinvietnam_app.R;
 
 public class MainActivity extends AppCompatActivity {
 private RecyclerView.Adapter adapterPopular, adapterCat;
-private EditText username ;
+private ImageView profile;
 private RecyclerView recyclerViewPopular, recyclerViewCategory;
 //private FirebaseAuth auth;
 //private FirebaseUser user;
@@ -39,10 +42,15 @@ private RecyclerView recyclerViewPopular, recyclerViewCategory;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        username = findViewById(R.id.username);
-//        user = auth.getCurrentUser();
-//        if(username != null)
-//            username.setText(user.getEmail());
+        profile = findViewById(R.id.profile);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         initRecycleView();
 
     }

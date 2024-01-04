@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,12 +12,21 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Calendar;
+
 import project.anhthu.travelinvietnam_app.R;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class ActivityLogin extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText;
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private TextView tvDateTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +50,38 @@ public class ActivityLogin extends AppCompatActivity {
             Intent intent = new Intent(ActivityLogin.this, ActivityRegister.class);
             startActivity(intent);
         });
+
+        // DATE Time
+         tvDateTime = findViewById(R.id.tvDateTime);
+        updateDateTime();
     }
 
+    private void updateDateTime() {
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+                String dateTime = dateFormat.format(calendar.getTime());
+                tvDateTime.setText(dateTime);
+
+                // Chạy lại sau mỗi giây
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        // Bắt đầu cập nhật
+        handler.post(runnable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Dừng cập nhật khi Activity không còn hoạt động
+        handler.removeCallbacks(runnable);
+    }
+
+    //LOGIN
     private void performLogin() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
